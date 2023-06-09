@@ -15,8 +15,7 @@ class Departments(models.Model):
     class Meta:
         managed = False
         db_table = 'departments'
-
-
+  
 class DeptEmp(models.Model):
     emp_no = models.OneToOneField('Employees', models.DO_NOTHING, db_column='emp_no', primary_key=True)  # The composite primary key (emp_no, dept_no) found, that is not supported. The first column is selected.
     dept_no = models.ForeignKey(Departments, models.DO_NOTHING, db_column='dept_no')
@@ -52,6 +51,10 @@ class Employees(models.Model):
     class Meta:
         managed = False
         db_table = 'employees'
+    
+    #usamos para retornar o primeiro nome do employees da table
+    def __str__(self):
+      return self.first_name
 
 
 class Salaries(models.Model):
